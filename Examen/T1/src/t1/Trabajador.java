@@ -169,6 +169,6 @@ public class Trabajador
             }
         }
 
-        return this.sueld + bonos - descuenPen();//con esto sabremos cual es el sueldo total
+        return this.sueld + bonos - descuenPen();//con esto sabremos cual es el sueldo
     }
 }
