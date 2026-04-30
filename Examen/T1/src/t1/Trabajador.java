@@ -81,7 +81,7 @@ public class Trabajador
 
     public void setReglab(String reglab) 
     {
-        if(this.reglab.equalsIgnoreCase("728")|| this.reglab.equalsIgnoreCase("LS"))
+        if(reglab.equalsIgnoreCase("728")|| reglab.equalsIgnoreCase("LS"))
         {
             this.reglab=reglab;
         }
@@ -96,11 +96,11 @@ public class Trabajador
     }
 
     public void setFondpen(String fondpen) {
-        if (this.fondpen.equalsIgnoreCase("Integra")||this.fondpen.equalsIgnoreCase("Prima"))
+        if (fondpen.equalsIgnoreCase("Integra")||fondpen.equalsIgnoreCase("Prima"))
         {
             this.fondpen=fondpen;
         }
-        else if(this.fondpen.equalsIgnoreCase("Habitat")||this.fondpen.equalsIgnoreCase("ONP"))
+        else if(fondpen.equalsIgnoreCase("Habitat")||fondpen.equalsIgnoreCase("ONP"))
         {
             this.fondpen=fondpen;
         }
@@ -133,5 +133,42 @@ public class Trabajador
     public void setSueld(Double sueld) {
         this.sueld = sueld;
     }
+    public double descuenPen()
+    {
+        if (this.fondpen == null) 
+            return 0.0;
+        
+        if (this.fondpen.equalsIgnoreCase("ONP")) {
+            return this.sueld * 0.13;
+        }
+        else if(this.fondpen.equalsIgnoreCase("Integra")) 
+        {
+            return this.sueld * 0.121; 
+        }
+        else if(this.fondpen.equalsIgnoreCase("Prima"))
+        {
+            return this.sueld * 0.125;
+        }
+        else if(this.fondpen.equalsIgnoreCase("Habitat"))
+        {
+            return this.sueld * 0.127;
+        }
+        return 0.0;
+    }
+    public double CalcularSueldo() {
+        double bonos = 0.0;
 
+        if (this.reglab != null && this.reglab.equalsIgnoreCase("728")) 
+        {
+            if (this.hij != null && this.hij == true) {
+                bonos += 50; // Profesor en este caso diremos que el bono por tener hijo es de 50 soles
+            }
+
+            if (this.hortrab != null && this.hortrab.equalsIgnoreCase("Nocturno")) {
+                bonos += (this.sueld * 0.12);//profesor en este caso simularemos que es un bono del 12%
+            }
+        }
+
+        return this.sueld + bonos - descuenPen();//con esto sabremos cual es el sueldo total
+    }
 }
