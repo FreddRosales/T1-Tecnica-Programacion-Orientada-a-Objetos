@@ -171,4 +171,15 @@ public class Trabajador
 
         return this.sueld + bonos - descuenPen();//con esto sabremos cual es el sueldo
     }
+    public void VerDatos() {
+    System.out.println("REPORTE DE EMPLEADO: " + this.nombres + 
+        "\nDocumento:       " + this.tipodoc + " " + this.numdoc + 
+        "\nRégimen Laboral: " + this.reglab + 
+        "\nFondo Pensión:   " + this.fondpen + 
+        "\nSueldo Base:     S/ " + this.sueld + 
+        "\nHijos:           " + (this.hij ? "Sí" : "No") + 
+        "\nHorario:         " + this.hortrab + 
+        "\nDescuento Ley:   S/ " + descuenPen() + 
+        "\nSueldo Neto:     S/ " + CalcularSueldo()); // Se cerró el paréntesis correctamente
+}
 }
